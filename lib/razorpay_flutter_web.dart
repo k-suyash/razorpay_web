@@ -10,6 +10,9 @@ import 'razorpay_events.dart';
 
 /// Flutter plugin for Razorpay SDK
 class RazorpayFlutterPlugin {
+  /// Stores the current active Razorpay instance
+  static Razorpay? _activeRazorpayInstance;
+
   /// Registers plugin with registrar
   static void registerWith(Registrar registrar) {
     final MethodChannel methodChannel = MethodChannel(
@@ -26,6 +29,12 @@ class RazorpayFlutterPlugin {
     switch (call.method) {
       case 'open':
         return await startPayment(call.arguments);
+      case 'close':
+        if (_activeRazorpayInstance != null) {
+          _activeRazorpayInstance!.close();
+          _activeRazorpayInstance = null;
+        }
+        return {'status': 'success'};
       case 'resync':
       default:
         var defaultMap = {'status': 'Not implemented on web'};
@@ -96,6 +105,9 @@ class RazorpayFlutterPlugin {
 
       // Initialize Razorpay
       var razorpay = Razorpay(jsOptions);
+      
+      // Store the instance for later closing
+      _activeRazorpayInstance = razorpay;
 
       // Add failure listener
       razorpay.on(
@@ -152,4 +164,5 @@ extension type Razorpay._(JSObject _) implements JSObject {
   external Razorpay(JSAny options);
   external void open();
   external void on(String event, JSFunction callback);
+  external void close();
 }

@@ -129,9 +129,19 @@ class Razorpay {
     _resync();
   }
 
-  /// Clears all event listeners
+  /// Clears all event listeners and closes any open payment modal
   void clear() {
     _eventEmitter.clear();
+    _closePaymentModal();
+  }
+
+  /// Closes the payment modal/popup
+  void _closePaymentModal() async {
+    if (UniversalPlatform.isWeb) {
+      await _channel.invokeMethod('close');
+    }
+    // For desktop platforms, the dialog is managed by Flutter's Navigator
+    // and will be closed when the completer completes or is cancelled
   }
 
   /// Retrieves lost responses from platform
