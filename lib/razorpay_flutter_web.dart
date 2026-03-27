@@ -105,7 +105,7 @@ class RazorpayFlutterPlugin {
 
       // Initialize Razorpay
       var razorpay = Razorpay(jsOptions);
-      
+
       // Store the instance for later closing
       _activeRazorpayInstance = razorpay;
 

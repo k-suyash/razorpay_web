@@ -132,8 +132,6 @@ void main() {
     });
   });
 
-
-
   group('Options Validation Tests', () {
     late Razorpay razorpay;
 
@@ -184,6 +182,4 @@ void main() {
       expect(called, isFalse);
     });
   });
-
-
 }

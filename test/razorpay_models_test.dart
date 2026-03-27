@@ -241,12 +241,11 @@ void main() {
     });
 
     test('event names match RazorpayEvents constants', () {
-      expect(Razorpay.EVENT_PAYMENT_SUCCESS,
-          RazorpayEvents.EVENT_PAYMENT_SUCCESS);
       expect(
-          Razorpay.EVENT_PAYMENT_ERROR, RazorpayEvents.EVENT_PAYMENT_ERROR);
-      expect(Razorpay.EVENT_EXTERNAL_WALLET,
-          RazorpayEvents.EVENT_EXTERNAL_WALLET);
+          Razorpay.EVENT_PAYMENT_SUCCESS, RazorpayEvents.EVENT_PAYMENT_SUCCESS);
+      expect(Razorpay.EVENT_PAYMENT_ERROR, RazorpayEvents.EVENT_PAYMENT_ERROR);
+      expect(
+          Razorpay.EVENT_EXTERNAL_WALLET, RazorpayEvents.EVENT_EXTERNAL_WALLET);
     });
 
     test('error codes are correctly defined', () {
@@ -265,8 +264,6 @@ void main() {
     });
 
     test('all error codes are unique', () {
-      
-
       // Check that UNKNOWN_ERROR is distinct
       expect(ResponseCodes.UNKNOWN_ERROR, 100);
 
@@ -288,7 +285,8 @@ void main() {
 
   group('Response Model Constructor Tests', () {
     test('PaymentSuccessResponse constructor works correctly', () {
-      final response = PaymentSuccessResponse('pay_123', 'order_123', 'sig_123');
+      final response =
+          PaymentSuccessResponse('pay_123', 'order_123', 'sig_123');
 
       expect(response.paymentId, 'pay_123');
       expect(response.orderId, 'order_123');
