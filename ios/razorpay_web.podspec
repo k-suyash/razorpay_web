@@ -8,15 +8,12 @@ Pod::Spec.new do |s|
   s.description      = 'Flutter plugin for Razorpay SDK.'
   s.homepage         = 'https://github.com/razorpay/razorpay-flutter'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Gaurav Yadav' => '269mehta@gmail.com' }
+  s.author           = { 'Chintan Acharya' => 'chintan.acharya@razorpay.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  # Pinned to 1.3.2 - versions 1.4.0+ require displayController parameter in open() method
-  # which breaks compatibility with current implementation. Update requires view controller
-  # management changes in SwiftRazorpayFlutterPlugin.
-  s.dependency 'razorpay-pod', '1.3.2'
+  s.dependency 'razorpay-pod'
 
   s.ios.deployment_target = '10.0'
 end
